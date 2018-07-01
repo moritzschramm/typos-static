@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cat _app/*.js > tmp.js
+
+nodejs uglify-js/bin/uglifyjs -c -m -o res/js/app/app.min.js tmp.js
+
+rm tmp.js
