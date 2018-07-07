@@ -328,7 +328,7 @@ function app_nextLine() {
   */
 function app_uploadResults() {
 
-  var stats = "Velocity: " + tm_velocity.toFixed(1) + " Keys/min<br>Correct characters: " + tm_keystrokes + "<br>Errors: " + app_errorCount + "<br>Ratio: " + ( Math.min(app_errorCount / tm_keystrokes, 1) * 100.0).toFixed(1);
+  var stats = "Velocity: " + tm_velocity.toFixed(1) + " Keys/min<br>Correct characters: " + tm_keystrokes + "<br>Errors: " + app_errorCount + "<br>Ratio: " + ( Math.min(app_errorCount / tm_keystrokes, 1) * 100.0).toFixed(1) + "%";
 
   $("#model_finished_body").html(stats);
 

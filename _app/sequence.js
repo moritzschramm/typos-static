@@ -5,7 +5,9 @@
   ***/
 
 var sq_WIKI_URL = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&exintro&generator=random&grnnamespace=0&grnlimit=10&origin=*&redirects=";
+var sq_WIKI_URL_DE = "https://de.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&exintro&generator=random&grnnamespace=0&grnlimit=10&origin=*&redirects=";
 var sq_REGEX = /^[A-Za-z0-9.,\+@!"§$%&/()=?:;<>\[\]~*#' _\\{}\n\t-]+$/;
+var sq_REGEX_DE = /^[A-Za-z0-9.,\+@äöü!"§$%&/()=?:;<>\[\]~*#' _\\{}\n\t-]+$/;
 
 var sequence = {     // the object where the lines, the line pointer and the errors get stored
   index:    0,
@@ -24,6 +26,11 @@ function sq_init(loaded) {
 
   var xhttp = new XMLHttpRequest();
 
+  if(kb_layout === "de-de") {
+    sq_WIKI_URL = sq_WIKI_URL_DE;
+    sq_REGEX = sq_REGEX_DE;
+  }
+
   xhttp.addEventListener("load", function() {
     
     var l = ["Error, please reload page"];
@@ -37,7 +44,7 @@ function sq_init(loaded) {
       if(text.length > 300 && text.length < 1000 && sq_REGEX.test(text)) {
 
         l.pop();      // delete error message
-        sq_parseText(title, l);
+        sq_parseText(title + "\n", l);
         sq_parseText(text, l);
         break;
       }

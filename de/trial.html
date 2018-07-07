@@ -1,7 +1,10 @@
+---
+permalink: /de/trial
+---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-<title>Try it out - Typos</title>
+<title>Ausprobieren - Typos</title>
 <meta charset="utf-8">
 <link rel="apple-touch-icon" sizes="57x57" href="/res/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/res/favicon/apple-icon-60x60.png">
@@ -41,7 +44,7 @@
 <div class="collapse navbar-collapse" id="myNavbar">
 <ul class="nav navbar-nav navbar-left">
 <li><a href="/">Home</a></li>
-<li class="active"><a href="/trial">Try it out</a></li>
+<li class="active"><a href="/trial">Ausprobieren</a></li>
 <li id="github-link"><a href="https://github.com/moritzschramm/typos" target="_blank">GitHub</a></li>
 </ul>
 </div>
@@ -55,9 +58,9 @@
 <span class="glyphicon glyphicon-cog settings-icon unselectable"></span>
 </a>
 <ul class="dropdown-menu dropdown-menu-right">
-<li><a class="settings-item" onclick="toggleAssignment();"><span id="assignment-state" class="glyphicon glyphicon-unchecked"></span> Show key assignment</a></li>
-<li><a class="settings-item" onclick="toggleDivider();"><span id="divider-state" class="glyphicon glyphicon-unchecked"></span> Show divider</a></li>
-<li><a class="settings-item" onclick="toggleKeyboard();"><span id="keyboard-state" class="glyphicon glyphicon-check"></span> Show keyboard</a></li>
+<li><a class="settings-item" onclick="toggleAssignment();"><span id="assignment-state" class="glyphicon glyphicon-unchecked"></span> Tastaturbelegung anzeigen</a></li>
+<li><a class="settings-item" onclick="toggleDivider();"><span id="divider-state" class="glyphicon glyphicon-unchecked"></span> Trennung anzeigen</a></li>
+<li><a class="settings-item" onclick="toggleKeyboard();"><span id="keyboard-state" class="glyphicon glyphicon-check"></span> Tastatur anzeigen</a></li>
 </ul>
 </div>
 <div class="charsequence">
@@ -82,19 +85,19 @@
 </div>
 <div class="extraPanel gone" id="fingerInfo">
 <div class="extraInfoSmall">
-<span style="color: #ffc107;">Pinki</span>
+<span style="color: #ffc107;">Kleiner Finger</span>
 </div>
 <div class="extraInfoSmall">
-<span style="color: #f44336;">Ring finger</span>
+<span style="color: #f44336;">Ringfinger</span>
 </div>
 <div class="extraInfoSmall">
-<span style="color: #00c853;">Middle finger</span>
+<span style="color: #00c853;">Mittelfinger</span>
 </div>
 <div class="extraInfoSmall">
-<span style="color: #673ab7;">Index finger</span>
+<span style="color: #673ab7;">Zeigefingerfinger</span>
 </div>
 <div class="extraInfoSmall">
-<span style="color: #03a9f4;">Thumb</span>
+<span style="color: #03a9f4;">Daumen</span>
 </div>
 </div>
 <div class="extraPanel row" style="margin-left:0;margin-right:0;">
@@ -123,8 +126,8 @@ Error rate: <span id="errorRatio">0.0</span>%
 <p class="footer-heading"><strong>Links</strong></p>
 <ul class="footer-list">
 <li><a href="/" class="footer-link">Home</a></li>
-<li><a href="/privacy" class="footer-link">Privacy policy</a></li>
-<li><a href="/de/trial" class="footer-link">German version</a></li>
+<li><a href="/privacy" class="footer-link">Datenschutzerklärung</a></li>
+<li><a href="/trial" class="footer-link">English version</a></li>
 </ul>
 </div>
 <div class="col-md-2 text-center">
@@ -139,7 +142,7 @@ Error rate: <span id="errorRatio">0.0</span>%
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title">Finished! Statistics:</h4>
+<h4 class="modal-title">Fertig! Statistiken:</h4>
 </div>
 <div class="modal-body">
 <p id="model_finished_body"></p>
@@ -164,7 +167,7 @@ Error rate: <span id="errorRatio">0.0</span>%
 <script>
 app_startString = "Press any key";
 
-kb_layout   = "en-us";
+kb_layout   = "de-de";
 sq_dataURI  = "/trial";
 
 misc_assignmentVisible  = false;
