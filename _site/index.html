@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <title>Typos</title>
+
 <meta charset="utf-8">
 <link rel="apple-touch-icon" sizes="57x57" href="/res/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/res/favicon/apple-icon-60x60.png">
@@ -24,9 +25,14 @@
 <link href='https://fonts.googleapis.com/css?family=Arvo|Montserrat|Raleway|Lato|Open+Sans:400,600' rel='stylesheet' type='text/css'>
 <link href="/res/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/res/css/main.min.css" rel="stylesheet" type="text/css">
+
+
+
 <link href="/res/css/public_index.min.css" rel="stylesheet" type="text/css">
+<link href="/res/css/app.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
 <div class="container">
 <div class="navbar-header">
@@ -39,13 +45,15 @@
 </div>
 <div class="collapse navbar-collapse" id="myNavbar">
 <ul class="nav navbar-nav navbar-left">
-<li class="active"><a href="/">Home</a></li>
+<li><a href="/">Home</a></li>
 <li><a href="/trial">Try it out</a></li>
 <li id="github-link"><a href="https://github.com/moritzschramm/typos" target="_blank">GitHub</a></li>
 </ul>
 </div>
 </div>
 </nav>
+
+
 <div style="height:50px;"></div>
 <div class="splash"></div>
 <div class="container outercontainer">
@@ -134,5 +142,6 @@ If you want to create your own exercises and measure your progress, you have to 
 <script>
 function setSplashText(){function t(){return s===e.length?void $("#splash_btn").animate({top:"10px",opacity:"1"},60):(n+=e.charAt(s),o.html(n),s++,setTimeout(t,l),void 0)}var e="Learn touch typing easily.",n="",o=$("#splash_text"),s=0,l=50;setTimeout(t,l)}function clickMore(){$("html, body").animate({scrollTop:$("#jumbotron").offset().top-50},"slow")}$(document).ready(function(){$("#splash_text").html(""),setSplashText()});
 </script>
+
 </body>
 </html>

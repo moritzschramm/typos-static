@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Try it out - Typos</title>
+<title>Typos</title>
+
 <meta charset="utf-8">
 <link rel="apple-touch-icon" sizes="57x57" href="/res/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/res/favicon/apple-icon-60x60.png">
@@ -24,10 +25,14 @@
 <link href='https://fonts.googleapis.com/css?family=Arvo|Montserrat|Raleway|Lato|Open+Sans:400,600' rel='stylesheet' type='text/css'>
 <link href="/res/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/res/css/main.min.css" rel="stylesheet" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+
+
+
+<link href="/res/css/public_index.min.css" rel="stylesheet" type="text/css">
 <link href="/res/css/app.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
 <div class="container">
 <div class="navbar-header">
@@ -41,12 +46,15 @@
 <div class="collapse navbar-collapse" id="myNavbar">
 <ul class="nav navbar-nav navbar-left">
 <li><a href="/">Home</a></li>
-<li class="active"><a href="/trial">Try it out</a></li>
+<li><a href="/trial">Try it out</a></li>
 <li id="github-link"><a href="https://github.com/moritzschramm/typos" target="_blank">GitHub</a></li>
 </ul>
 </div>
 </div>
 </nav>
+
+
+
 <div style="height:50px;"></div>
 <div class="container-fluid" style="min-height: 100vh">
 <div class="container kb">
@@ -55,7 +63,7 @@
 <span class="glyphicon glyphicon-cog settings-icon unselectable"></span>
 </a>
 <ul class="dropdown-menu dropdown-menu-right">
-<li><a class="settings-item" onclick="toggleAssignment();"><span id="assignment-state" class="glyphicon glyphicon-unchecked"></span> Show key assignment</a></li>
+<li><a class="settings-item" onclick="toggleAssignment();"><span id="assignment-state" class="glyphicon glyphicon-unchecked"></span> Show assignment</a></li>
 <li><a class="settings-item" onclick="toggleDivider();"><span id="divider-state" class="glyphicon glyphicon-unchecked"></span> Show divider</a></li>
 <li><a class="settings-item" onclick="toggleKeyboard();"><span id="keyboard-state" class="glyphicon glyphicon-check"></span> Show keyboard</a></li>
 </ul>
@@ -82,7 +90,7 @@
 </div>
 <div class="extraPanel gone" id="fingerInfo">
 <div class="extraInfoSmall">
-<span style="color: #ffc107;">Pinki</span>
+<span style="color: #ffc107;">Little finger</span>
 </div>
 <div class="extraInfoSmall">
 <span style="color: #f44336;">Ring finger</span>
@@ -91,28 +99,42 @@
 <span style="color: #00c853;">Middle finger</span>
 </div>
 <div class="extraInfoSmall">
-<span style="color: #673ab7;">Index finger</span>
+<span style="color: #673ab7;">Pointer</span>
 </div>
 <div class="extraInfoSmall">
 <span style="color: #03a9f4;">Thumb</span>
 </div>
 </div>
 <div class="extraPanel row" style="margin-left:0;margin-right:0;">
-<div class="col-md-3 text-center" data-toggle="tooltip" data-placement="bottom" title="Average speed measured in keystrokes per minute">
+<div class="col-md-3 text-center" data-toggle="tooltip" data-placement="bottom" title="">
 <span id="velocity">0.0</span> K/min </div>
 <div class="col-md-3 text-center">
-Correct chars: <span id="rightCount">0</span>
+Correct keys: <span id="rightCount">0</span>
 </div>
 <div class="col-md-3 text-center">
-Errors: <span id="errorCount">0</span>
+Wrong keys: <span id="errorCount">0</span>
 </div>
 <div class="col-md-3 text-center">
-Error rate: <span id="errorRatio">0.0</span>%
+Ratio: <span id="errorRatio">0.0</span>%
 </div>
 </div>
 </div>
 
+
+<div class="container kb">
+  
+  <h3>Use custom text:</h3>
+
+  <div class="form-group">
+    <textarea class="form-control" rows="20" id="user-sequence" style="padding: 5px; resize: vertical;"></textarea>
+  </div>
+
+  <button class="btn btn-primary" id="user-sequence-action">Use text</button>
+
 </div>
+
+</div>
+
 <footer>
 <div class="container">
 <div class="text-center" style="font-size: 16px; margin: 20px 0px;">Typos &copy; 2018</div>
@@ -124,7 +146,9 @@ Error rate: <span id="errorRatio">0.0</span>%
 <ul class="footer-list">
 <li><a href="/" class="footer-link">Home</a></li>
 <li><a href="/privacy" class="footer-link">Privacy policy</a></li>
+
 <li><a href="/de/trial" class="footer-link">German version</a></li>
+
 </ul>
 </div>
 <div class="col-md-2 text-center">
@@ -134,12 +158,13 @@ Error rate: <span id="errorRatio">0.0</span>%
 </div>
 </footer>
 
+
 <div id="modal_finished" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title">Finished! Statistics:</h4>
+<h4 class="modal-title">Done! Statistics:</h4>
 </div>
 <div class="modal-body">
 <p id="model_finished_body"></p>
@@ -153,16 +178,10 @@ Error rate: <span id="errorRatio">0.0</span>%
 
 <script src="/res/js/jquery.min.js"></script>
 <script src="/res/js/bootstrap.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $(".notification-close").on("click", function() {
-      $(".notification").fadeOut();
-    });
-  });
-  </script>
 <script src="/res/js/app/app.min.js"></script>
 <script>
 app_startString = "Press any key";
+app_errorString = "Error, please reload page";
 
 kb_layout   = "en-us";
 sq_dataURI  = "/trial";
@@ -191,5 +210,7 @@ $(document).ready(function() {
 });
 
 </script>
+
+
 </body>
 </html>
