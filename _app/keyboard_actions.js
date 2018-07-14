@@ -8,6 +8,31 @@
 var kb_lastHighlightedKeyId;    // the key id which was last used when kb_highlightKey() was called
 
 /**
+  * disables keyboard
+  *
+  * @return void
+  */
+function kb_disableKeyboard() {
+
+  $(document).unbind('keydown')
+  document.removeEventListener('keydown', kb_handleKeyDown);
+  document.removeEventListener('keyup',   kb_handleKeyUp);
+}
+
+/**
+  * enables keyboard
+  *
+  * @return void
+  */
+function kb_enableKeyboard() {
+
+  $(document).unbind('keydown').bind('keydown', kb_preventDefaultKeys);
+  document.addEventListener('keydown',  kb_handleKeyDown);
+  document.addEventListener('keyup',    kb_handleKeyUp);
+}
+
+
+/**
   * highlight all keys
   *
   * @return void

@@ -11,7 +11,17 @@
 /**
   * prevent default for various keys
   */
-$(document).unbind('keydown').bind('keydown', function (e) {
+$(document).unbind('keydown').bind('keydown', kb_preventDefaultKeys);
+
+document.addEventListener('keydown',  kb_handleKeyDown);
+document.addEventListener('keyup',    kb_handleKeyUp);
+
+/**
+  * prevents default behaviour for various keys
+  *
+  * @return void
+  */
+function kb_preventDefaultKeys(e) {
 
   if( e.keyCode === 8           ||    // backspace
       e.keyCode === 9           ||    // tab
@@ -28,10 +38,7 @@ $(document).unbind('keydown').bind('keydown', function (e) {
 
     e.preventDefault();
   }
-});
-
-document.addEventListener('keydown',  kb_handleKeyDown);
-document.addEventListener('keyup',    kb_handleKeyUp);
+}
 
 /**
   * key down handler

@@ -20,6 +20,7 @@ var app_inError     = false;              // if the there is currently some wron
 var app_errorCount  = 0;                  // amount of errors made by user
 var app_nonce       = "";                 // retrieved when lection starts, should be submitted when uploading results
 var app_startString = "";                 // the string that gets displayed at the beginning
+var app_errorString = "";                 // the string that gets displayed when an error occured
 
 var app_silentKeys = ["Shift", "AltGraph", "Alt", "Control"];    // keys that should not be printed to display
 
@@ -77,7 +78,16 @@ function app_changeState(state) {
       // hide loader
       $("#loader").hide();
       // show info
+      dp_setRedText("");
+      dp_setGreenText("");
       dp_setNormalText(app_startString);
+      app_inError = false;
+      app_errorCount = 0;
+      sequence.index = 0;
+      tm_stop();
+      ib_updateBar(); 
+      pb_update();
+      kb_unhighlightAllKeys();
 
       break;
 

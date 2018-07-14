@@ -9,6 +9,9 @@ var sq_WIKI_URL_DE = "https://de.wikipedia.org/w/api.php?format=json&action=quer
 var sq_REGEX = /^[A-Za-z0-9.,\+@!"§$%&/()=?:;<>\[\]~*#' _\\{}\n\t-]+$/;
 var sq_REGEX_DE = /^[A-Za-z0-9.,\+@äöü!"§$%&/()=?:;<>\[\]~*#' _\\{}\n\t-]+$/;
 
+var sq_REGEX_FILTER = /[^A-Za-z0-9.,\+@!"§$%&/()=?:;<>\[\]~*#' _\\{}\n\t-]/gi;
+var sq_REGEX_FILTER_DE = /[^A-Za-z0-9.,\+@äöü!"§$%&/()=?:;<>\[\]~*#' _\\{}\n\t-]/gi;
+
 var sequence = {     // the object where the lines, the line pointer and the errors get stored
   index:    0,
   lines:    [],
@@ -24,6 +27,11 @@ var sq_maxLineLength  = 24;   // max line length excluding appended ⏎
   */
 function sq_init(loaded) {
 
+  // enable/disable keyboard when user wants to input text
+  $("#user-sequence").focus(kb_disableKeyboard);
+  $("#user-sequence").blur(kb_enableKeyboard);
+  $("#user-sequence-action").click(sq_parseUserSequence);
+
   var xhttp = new XMLHttpRequest();
 
   if(kb_layout === "de-de") {
@@ -33,7 +41,7 @@ function sq_init(loaded) {
 
   xhttp.addEventListener("load", function() {
     
-    var l = ["Error, please reload page"];
+    var l = [app_errorString];
 
     var res = JSON.parse(this.responseText);
     for(var key in res.query.pages) {
@@ -41,7 +49,7 @@ function sq_init(loaded) {
       var title = res.query.pages[key].title;
       var text = res.query.pages[key].extract;
 
-      if(text.length > 300 && text.length < 1000 && sq_REGEX.test(text)) {
+      if(text.length > 200 && text.length < 1200 && sq_REGEX.test(text)) {
 
         l.pop();      // delete error message
         sq_parseText(title + "\n", l);
@@ -56,6 +64,24 @@ function sq_init(loaded) {
   });
   xhttp.open("GET", sq_WIKI_URL);
   xhttp.send();
+}
+
+function sq_parseUserSequence() {
+
+  var regex = kb_layout === "de-de" ? sq_REGEX_FILTER_DE : sq_REGEX_FILTER;
+  var seq = $("#user-sequence").val().replace(regex, '');
+  $("#user-sequence").val("");
+  
+  sequence.lines = [];
+  sequence.errors = [];
+  var l = [];
+  sq_parseText(seq, l);
+  console.log(l);
+  sq_prepareSequence(l);
+
+  window.scrollTo(0,0);
+
+  app_changeState(STATE_IDLE);
 }
 
 
@@ -89,6 +115,11 @@ function sq_parseText(text, lines) {
 
   var counter = 0;
   var lastSpace = -1;
+
+  if(text.length < sq_maxLineLength) {
+    lines.push(text);
+    return;
+  }
 
   for(var i = 0; i < text.length; i++) {
 

@@ -12,7 +12,7 @@ var tm_velocity       = 0;    // current velocity (keystrokes per minute)
 var tm_keystrokes     = 0;    // total amount of keystrokes a user has made
 
 var tm_intervalTime   = 2500; // (in miliseconds) interval time for calling tm_calculate
-var tm_intervalId;            // id returned by setInterval() (used for clearInterval())
+var tm_intervalId     = 0;    // id returned by setInterval() (used for clearInterval())
 
 
 /**
@@ -30,6 +30,8 @@ function tm_init(loaded) {
 function tm_start() {
 
   tm_startTime  = Date.now();
+  tm_veloctiy = 0;
+  tm_keystrokes = 0;
   tm_intervalId = setInterval(tm_calculate, tm_intervalTime);     // avg key presses per minute get updated on every keystroke or every 2.5 seconds
 }
 
